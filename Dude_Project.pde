@@ -9,8 +9,10 @@ void setup() {
 }
 
 void draw() {
-  background(0);
+  background(50);
+  dude1.update();
   dude1.show();
+  dude1.update();
   dude2.show();
-}
+  }
   
