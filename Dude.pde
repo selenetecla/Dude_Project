@@ -3,34 +3,42 @@ public class Dude {
   private float yPos;
   private color dudeColor;
   private String shape;
-  private int xDir = 1;
+  private int xDir = 2;
+  private int yDir = 1;
   private float size;
+  private float speed = 2;
 
 
-  public Dude(float x, float y, color c, String s) {
-    xPos = x;
-    yPos = y;
-    dudeColor = c;
+  public Dude(String s) {
+    xPos = random(width);
+    yPos = random(height);
+    dudeColor = color(random(0, 255), random(0, 255), random(0, 255));
     shape = s;
     size = random(30, 50);
   }
-  //
+
   public void show() {
     fill(dudeColor);
     if (shape.equals("circle")) {
       circle(xPos, yPos, size);
     } else if (shape.equals("triangle")) {
-      triangle(xPos, yPos - size / 2, xPos - size / 2, yPos + size / 2, xPos + size / 2, yPos + size / 2); //figure out why this doesn't work
-
+      triangle(xPos, yPos - size / 2, xPos - size / 2, yPos + size / 2, xPos + size / 2, yPos + size / 2);
     } else {
-      rect(120, 80, 220, 220);
+      rect(xPos, yPos, 20, 20);
     }
-
   }
   public void update() {
     xPos = xPos + xDir;
-    if (xPos > width - 20 || xPos < 20) {
+    yPos = yPos + yDir;
+    if (xPos > width - 30 || xPos < 30) {
       xDir = -xDir;
+    }
+    if (yPos > width - 20 || yPos < 20) {
+      yDir = -yDir;
+    }
+    float d = dist(dude1.xPos, dude1.yPos, dude2.xPos, dude2.yPos);
+    if (d < dude1.size + dude2.size) {
+      background(0);
     }
   }
 }
