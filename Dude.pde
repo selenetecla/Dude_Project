@@ -6,7 +6,6 @@ public class Dude {
   private int xDir = 2;
   private int yDir = 1;
   private float size;
-  private float speed = 2;
 
 
   public Dude(String s) {
@@ -31,13 +30,15 @@ public class Dude {
     xPos = xPos + xDir;
     yPos = yPos + yDir;
     if (xPos > width - 30 || xPos < 30) {
-      xDir = -xDir;
+      xDir = -xDir; //break up into two if statements  and set into the regular width
     }
     if (yPos > width - 20 || yPos < 20) {
       yDir = -yDir;
     }
     float d = dist(dude1.xPos, dude1.yPos, dude2.xPos, dude2.yPos);
-    if (d < dude1.size + dude2.size) {
+    if (d < (dude1.size + dude2.size) / 2) {
+      print(d);
+      print(dude1.size + dude2.size);
       background(0);
     }
   }
